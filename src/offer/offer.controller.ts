@@ -7,6 +7,7 @@ import {
   Patch,
   Post,
 } from "@nestjs/common";
+import { ParseIntPipe } from "@nestjs/common/pipes/parse-int.pipe";
 
 import { CreateOfferDto } from "./dto/create-offer.dto";
 import { UpdateOfferDto } from "./dto/update-offer.dto";
@@ -27,20 +28,20 @@ export class OfferController {
   }
 
   @Get(":id")
-  async findOne(@Param("id") id: string) {
-    return this.offerService.findOne(+id);
+  async findOne(@Param("id", ParseIntPipe) id: number) {
+    return this.offerService.findOne(id);
   }
 
   @Patch(":id")
   async update(
-    @Param("id") id: string,
+    @Param("id", ParseIntPipe) id: number,
     @Body() updateOfferDto: UpdateOfferDto,
   ) {
-    return this.offerService.update(+id, updateOfferDto);
+    return this.offerService.update(id, updateOfferDto);
   }
 
   @Delete(":id")
-  async remove(@Param("id") id: string) {
-    return this.offerService.remove(+id);
+  async remove(@Param("id", ParseIntPipe) id: number) {
+    return this.offerService.remove(id);
   }
 }
