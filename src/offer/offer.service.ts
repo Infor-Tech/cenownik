@@ -1,6 +1,6 @@
 import { databaseErrorHandler } from "src/utils/database-error-handler.service";
 
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 
 import { DatabaseService } from "../database/database.service";
 import { CreateOfferDto } from "./dto/create-offer.dto";
@@ -30,6 +30,9 @@ export class OfferService {
       const offer = await this.database.offer.findUnique({
         where: { id },
       });
+      if (offer == null) {
+        throw new NotFoundException(`Offer with a given not found`);
+      }
       return offer;
     } catch (error: unknown) {
       databaseErrorHandler(error, "Offer", "find");

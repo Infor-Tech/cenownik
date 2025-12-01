@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 
 import { DatabaseService } from "../database/database.service";
 import { databaseErrorHandler } from "../utils/database-error-handler.service";
@@ -31,6 +31,10 @@ export class UserService {
       const user = await this.database.user.findUnique({
         where: { id },
       });
+      if (user == null) {
+        throw new NotFoundException(`User with a given not found`);
+      }
+
       return user;
     } catch (error: unknown) {
       databaseErrorHandler(error, "User", "find");
