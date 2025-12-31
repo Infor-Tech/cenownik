@@ -5,10 +5,17 @@ import { AppService } from "./app.service";
 import { DatabaseModule } from "./database/database.module";
 import { OfferModule } from "./offer/offer.module";
 import { PriceHistoryModule } from "./price-history/price-history.module";
+import { PriceScraperModule } from "./price-scraper/price-scraper.module";
 import { UserModule } from "./user/user.module";
 
 @Module({
-  imports: [DatabaseModule, OfferModule, UserModule, PriceHistoryModule],
+  imports: [
+    DatabaseModule,
+    OfferModule,
+    UserModule,
+    PriceScraperModule,
+    PriceHistoryModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
