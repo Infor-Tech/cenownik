@@ -1,6 +1,7 @@
 import {
-  IsCurrency,
+  IsNumber,
   IsOptional,
+  IsPositive,
   IsString,
   IsUrl,
   Length,
@@ -19,6 +20,7 @@ export class UpdateOfferDto extends PartialType(CreateOfferDto) {
   @IsUrl()
   link?: string;
   @IsOptional()
-  @IsCurrency()
+  @IsNumber({ maxDecimalPlaces: 2 })
+  @IsPositive()
   priceThreshold?: number;
 }

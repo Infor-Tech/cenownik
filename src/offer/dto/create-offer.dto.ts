@@ -1,5 +1,4 @@
 import {
-  IsCurrency,
   IsInt,
   IsNumber,
   IsPositive,
@@ -14,7 +13,8 @@ export class CreateOfferDto {
   name: string;
   @IsUrl()
   link: string;
-  @IsCurrency()
+  @IsNumber({ maxDecimalPlaces: 2 })
+  @IsPositive()
   priceThreshold: number;
   @IsNumber()
   @IsPositive()
