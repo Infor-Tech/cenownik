@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 
-import { databaseErrorHandler } from "../../src/utils/database-error-handler.service";
 import { DatabaseService } from "../database/database.service";
+import { databaseErrorHandler } from "../utils/database-error-handler.service";
 import { CreateOfferDto } from "./dto/create-offer.dto";
 import { UpdateOfferDto } from "./dto/update-offer.dto";
 
