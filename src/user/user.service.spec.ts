@@ -1,5 +1,7 @@
-import { Test, TestingModule } from "@nestjs/testing";
+import type { TestingModule } from "@nestjs/testing";
+import { Test } from "@nestjs/testing";
 
+import { DatabaseModule } from "./../../src/database/database.module";
 import { UserService } from "./user.service";
 
 describe("UserService", () => {
@@ -8,6 +10,7 @@ describe("UserService", () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [UserService],
+      imports: [DatabaseModule],
     }).compile();
 
     service = module.get<UserService>(UserService);
